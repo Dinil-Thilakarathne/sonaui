@@ -1,6 +1,7 @@
 import React from "react";
 import { ModeToggle } from "./ThemeToggle";
 import { Badge } from "./ui/badge";
+import AnimatedLink from "./AnimatedLink";
 
 const Header = () => {
   return (
@@ -12,7 +13,9 @@ const Header = () => {
         </Badge>
       </div>
       <div>
-        <div>
+        <div className="flex items-center gap-4">
+          <AnimatedLink text="Github" link="/docs" />
+          <AnimatedLink text="Instagram" link="/docs" />
           <ModeToggle />
         </div>
       </div>
