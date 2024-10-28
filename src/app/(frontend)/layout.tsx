@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import SideBar from "@/components/Sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -10,7 +11,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         enableSystem
         disableTransitionOnChange
       >
-        <Header/>
+        <Header />
+        <SideBar />
         {children}
       </ThemeProvider>
     </main>
