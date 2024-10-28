@@ -5,6 +5,8 @@ import useMeasure from "react-use-measure";
 import { Variant } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import type { TESTIMONIALS_QUERYResult } from "@/sanity/types";
+import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
 
 function Button({
   onClick,
@@ -39,29 +41,6 @@ export function TransitionPanelCard({ data }: TransitionPanelProps) {
       if (activeIndex >= data?.length) setActiveIndex(data.length - 1);
     }
   }, [activeIndex]);
-
-  const FEATURES = [
-    {
-      title: "Brand Identity",
-      description:
-        "Craft a unique brand presence with custom logos and style guides that establish cohesive, recognizable messaging across all channels.",
-    },
-    {
-      title: "Product Design",
-      description:
-        "Design and optimize products for an exceptional user experience, delivering seamless, intuitive interactions—especially in web applications.",
-    },
-    {
-      title: "Web Development",
-      description:
-        "Build engaging, visually compelling websites with user-focused design, ensuring a strong, effective online presence.",
-    },
-    {
-      title: "Design System",
-      description:
-        "Implement a cohesive design system to reinforce your brand across all platforms and products, supporting consistency and scalability.",
-    },
-  ];
 
   const handleSetActiveIndex = (newIndex: number) => {
     setDirection(newIndex > activeIndex ? 1 : -1);
@@ -108,10 +87,24 @@ export function TransitionPanelCard({ data }: TransitionPanelProps) {
       >
         {data.map((testimonial, index) => (
           <div key={index} className="px-4 pt-4" ref={ref}>
-            <div>
-              <h3 className="mb-0.5 font-medium text-zinc-800 dark:text-zinc-100">
+            <div className="items- grid grid-cols-[80px_auto] gap-x-2 py-2">
+              <figure className=" relative">
+                {testimonial.userImage && testimonial.user && (
+                  <Image
+                    src={urlFor(testimonial.userImage).url()}
+                    alt={testimonial.user}
+                    className="aspect-square rounded-full"
+                    width={80}
+                    height={80}
+                  />
+                )}
+              </figure>
+              <div>
+              <h3 className="pt-2 text-xl font-medium text-slate-500  dark:text-zinc-100">
                 {testimonial.user}
               </h3>
+              <span className=" italic ">Lorem, ipsum.</span>
+              </div>
             </div>
             <p className="text-zinc-600 dark:text-zinc-400">
               {testimonial.description}
@@ -125,7 +118,7 @@ export function TransitionPanelCard({ data }: TransitionPanelProps) {
             <ArrowLeft />
           </Button>
         )}
-        {activeIndex < FEATURES.length - 1 && (
+        {activeIndex < data.length - 1 && (
           <Button onClick={() => handleSetActiveIndex(activeIndex + 1)}>
             <ArrowRight />
           </Button>
