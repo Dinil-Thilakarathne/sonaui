@@ -74,6 +74,19 @@ export type Slug = {
   source?: string;
 };
 
+export type SonauiComponent = {
+  _id: string;
+  _type: "sonauiComponent";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  pageLink?: string;
+  status?: "inDevelopment" | "completed" | "deprecated";
+  category?: "textEffect" | "component";
+  tags?: "new" | "updated" | "soon";
+};
+
 export type Testimonial = {
   _id: string;
   _type: "testimonial";
@@ -159,6 +172,7 @@ export type AllSanitySchemaTypes =
   | SanityFileAsset
   | Geopoint
   | Slug
+  | SonauiComponent
   | Testimonial
   | SanityImageCrop
   | SanityImageHotspot
