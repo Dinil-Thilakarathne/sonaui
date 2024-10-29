@@ -9,12 +9,12 @@ import {
 } from "./ui/sidebar";
 import { Badge } from "./ui/badge";
 import { sanityFetch } from "@/sanity/lib/live";
-import { SONAUI_COMPONENTS_QUERY } from "@/sanity/lib/queries";
+import { SONAUI_BASIC_COMPONENTS_QUERY } from "@/sanity/lib/queries";
 import Link from "next/link";
 
 const SideBar = async () => {
   const { data: ComponentData } = await sanityFetch({
-    query: SONAUI_COMPONENTS_QUERY,
+    query: SONAUI_BASIC_COMPONENTS_QUERY,
   });
   console.log(ComponentData);
   return (
@@ -31,7 +31,7 @@ const SideBar = async () => {
               <SidebarGroupContent key={i} className=" ">
                 {i === 0 && (
                   <SidebarGroupLabel className="uppercase">
-                    {comp.category}
+                    Basic Components
                   </SidebarGroupLabel>
                 )}
                 {comp.pageLink && (
