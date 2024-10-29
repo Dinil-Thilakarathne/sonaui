@@ -5,7 +5,7 @@ import AnimatedLink from "./AnimatedLink";
 
 const Header = () => {
   return (
-    <header className="flex w-full items-center justify-between p-4 z-[999]">
+    <header className="h-[75px] z-[999] flex w-full items-center justify-between p-4 container mx-auto">
       <div className="flex gap-0.5">
         <h1 className="select-none text-2xl">SonaUI</h1>
         <Badge variant={"soon"} className="h-fit flex-grow-0">

@@ -5,7 +5,6 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarSeparator,
 } from "./ui/sidebar";
 import { Badge } from "./ui/badge";
@@ -20,15 +19,11 @@ const SideBar = async () => {
   console.log(ComponentData);
 
   return (
-    <Sidebar variant="floating" collapsible="offcanvas">
-      <SidebarHeader>
-        <div className="flex gap-0.5">
-          <h1 className="select-none text-2xl">SonaUI</h1>
-          <Badge variant={"soon"} className="h-fit flex-grow-0">
-            Beta
-          </Badge>
-        </div>
-      </SidebarHeader>
+    <Sidebar
+      variant="floating"
+      collapsible="offcanvas"
+      className="absolute left-[none] min-h-[calc(100svh-100px)]"
+    >
       <SidebarSeparator />
       <SidebarContent>
         <SidebarGroup>
@@ -36,12 +31,17 @@ const SideBar = async () => {
             return (
               <SidebarGroupContent key={i} className=" ">
                 {i === 0 && (
-                  <SidebarGroupLabel className=" uppercase">{comp.category}</SidebarGroupLabel>
+                  <SidebarGroupLabel className="uppercase">
+                    {comp.category}
+                  </SidebarGroupLabel>
                 )}
                 {comp.pageLink && (
-                  <Link href={comp.pageLink} className="  w-full flex gap-0.5">
+                  <Link href={comp.pageLink} className="flex w-full gap-0.5">
                     <span className="text-xl">{comp.name}</span>
-                    <Badge variant={comp.tags} className=" text-xs flex-grow-0 h-fit px-2 py-0.5">
+                    <Badge
+                      variant={comp.tags}
+                      className="h-fit flex-grow-0 px-2 py-0.5 text-xs"
+                    >
                       {comp.tags}
                     </Badge>
                   </Link>
