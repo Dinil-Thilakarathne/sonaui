@@ -83,7 +83,7 @@ export type SonauiComponent = {
   name?: string;
   pageLink?: string;
   status?: "inDevelopment" | "completed" | "deprecated";
-  category?: "textEffect" | "component";
+  category?: "textEffect" | "basicComponent" | "magicComponent";
   tags?: "new" | "updated" | "soon";
 };
 
@@ -201,7 +201,17 @@ export type SONAUI_COMPONENTS_QUERYResult = Array<{
   name: string | null;
   pageLink: string | null;
   status: "completed" | "deprecated" | "inDevelopment" | null;
-  category: "component" | "textEffect" | null;
+  category: "basicComponent" | "magicComponent" | "textEffect" | null;
+  tags: "new" | "soon" | "updated" | null;
+}>;
+// Variable: SONAUI_BASIC_COMPONENTS_QUERY
+// Query: *[_type == "sonauiComponent"  && category == "basicComponent"] | order(name asc){    _id,    name,    pageLink,    status,    category,    tags  }
+export type SONAUI_BASIC_COMPONENTS_QUERYResult = Array<{
+  _id: string;
+  name: string | null;
+  pageLink: string | null;
+  status: "completed" | "deprecated" | "inDevelopment" | null;
+  category: "basicComponent" | "magicComponent" | "textEffect" | null;
   tags: "new" | "soon" | "updated" | null;
 }>;
 
@@ -211,5 +221,6 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "testimonial"]{\n  _id,\n  user,\n  userImage {\n    asset->{\n      _id,\n      url\n    }\n  },\n  description\n}': TESTIMONIALS_QUERYResult;
     '*[_type == "sonauiComponent"] | order(name asc){\n    _id,\n    name,\n    pageLink,\n    status,\n    category,\n    tags\n  }': SONAUI_COMPONENTS_QUERYResult;
+    '*[_type == "sonauiComponent"  && category == "basicComponent"] | order(name asc){\n    _id,\n    name,\n    pageLink,\n    status,\n    category,\n    tags\n  }': SONAUI_BASIC_COMPONENTS_QUERYResult;
   }
 }

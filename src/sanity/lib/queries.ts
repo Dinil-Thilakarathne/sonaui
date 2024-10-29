@@ -21,3 +21,13 @@ export const SONAUI_COMPONENTS_QUERY =
     category,
     tags
   }`);
+
+export const SONAUI_BASIC_COMPONENTS_QUERY =
+  defineQuery(`*[_type == "sonauiComponent"  && category == "basicComponent"] | order(name asc){
+    _id,
+    name,
+    pageLink,
+    status,
+    category,
+    tags
+  }`);

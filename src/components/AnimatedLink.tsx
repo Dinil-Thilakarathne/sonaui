@@ -17,7 +17,7 @@ const AnimatedLink = ({ text, link }: AnimatedLinkProps) => {
           className="text-xl uppercase"
           type="characters"
         />
-        <span className="relative -top-[10px] h-fit flex-grow-0 text-xs scale-75">
+        <span className="relative -top-[10px] h-fit flex-grow-0 scale-75 text-xs">
           <ArrowUpRight />
         </span>
       </Link>

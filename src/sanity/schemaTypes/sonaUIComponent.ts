@@ -39,7 +39,8 @@ export const sonauiComponent = defineType({
       options: {
         list: [
           { title: "Text Effect", value: "textEffect" },
-          { title: "Component", value: "component" },
+          { title: "Basic Components", value: "basicComponent" },
+          { title: "Magic Components", value: "magicComponent" },
         ],
       },
     }),
