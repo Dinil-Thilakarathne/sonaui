@@ -78,7 +78,7 @@ const AnimatedText = ({
 
   return (
     <div
-      className={cn("relative overflow-hidden text-xl ", className)}
+      className={cn("relative overflow-hidden h-fit text-xl ", className)}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
@@ -90,7 +90,7 @@ const AnimatedText = ({
           presetClass={presetClass}
         />
       )}
-      <motion.p className="relative select-none leading-[1]">
+      <motion.p className="relative select-none leading-[1] h-full">
         {splitText.map((char, index) => (
           <motion.span
             key={index}
@@ -131,7 +131,7 @@ const CloneText = ({
   presetClass,
 }: CloneTextProps) => {
   return (
-    <motion.p className={cn("absolute leading-[1] ", presetClass)}>
+    <motion.p className={cn("absolute leading-[1] h-full", presetClass)}>
       {splitText.map((char, index) => (
         <motion.span
           key={index}
