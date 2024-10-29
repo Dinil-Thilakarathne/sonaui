@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       >
         <Header />
         <div className="container relative mx-auto overflow-hidden">
-          <SidebarProvider className="sidebar-h">
+          <SidebarProvider className="">
             <SideBar />
             <div className="w-full">
               <SidebarTrigger />
