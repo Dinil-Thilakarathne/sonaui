@@ -14,8 +14,7 @@ const Header = () => {
       </div>
       <div>
         <div className="flex items-center gap-4">
-          <AnimatedLink text="Github" link="/docs" />
-          <AnimatedLink text="Instagram" link="/docs" />
+          <AnimatedLink text="Github" link="https://github.com/Dinil-Thilakarathne/sonaui/" />
           <ModeToggle />
         </div>
       </div>
