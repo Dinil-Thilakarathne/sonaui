@@ -11,7 +11,7 @@ const Page = async () => {
     query: TESTIMONIALS_QUERY,
   });
   const sourceCode = await getFileSourceCode(
-    "src/app/(frontend)/transition-panel/TransitionPanel.tsx",
+    "src/app/(frontend)/(magicComponents)/transition-panel/TransitionPanel.tsx",
   );
   return (
     <div className="flex flex-col py-4">
