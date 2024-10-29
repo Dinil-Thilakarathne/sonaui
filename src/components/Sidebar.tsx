@@ -17,12 +17,11 @@ const SideBar = async () => {
     query: SONAUI_COMPONENTS_QUERY,
   });
   console.log(ComponentData);
-
   return (
     <Sidebar
       variant="floating"
       collapsible="offcanvas"
-      className="absolute left-[none] min-h-[calc(100svh-100px)]"
+      className="sidebar-h absolute left-[none]"
     >
       <SidebarSeparator />
       <SidebarContent>
