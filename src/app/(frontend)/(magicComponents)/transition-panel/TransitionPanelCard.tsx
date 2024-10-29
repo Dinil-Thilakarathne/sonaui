@@ -40,7 +40,7 @@ export function TransitionPanelCard({ data }: TransitionPanelProps) {
     if (data) {
       if (activeIndex >= data?.length) setActiveIndex(data.length - 1);
     }
-  }, [activeIndex]);
+  }, [activeIndex,data]);
 
   const handleSetActiveIndex = (newIndex: number) => {
     setDirection(newIndex > activeIndex ? 1 : -1);
