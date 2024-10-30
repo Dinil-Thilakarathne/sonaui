@@ -8,13 +8,19 @@ const Header = () => {
     <header className="header-h container z-[999] mx-auto flex w-full items-center justify-between p-4">
       <div className="flex gap-0.5">
         <h1 className="select-none text-2xl">SonaUI</h1>
-        <Badge variant={"soon"} className="h-fit flex-grow-0">
-          Beta
+        <Badge
+          variant={"soon"}
+          className="h-fit flex-grow-0 text-[0.75rem] leading-[1]"
+        >
+          beta
         </Badge>
       </div>
       <div>
         <div className="flex items-center gap-4">
-          <AnimatedLink text="Github" link="https://github.com/Dinil-Thilakarathne/sonaui/" />
+          <AnimatedLink
+            text="Github"
+            link="https://github.com/Dinil-Thilakarathne/sonaui/"
+          />
           <ModeToggle />
         </div>
       </div>
