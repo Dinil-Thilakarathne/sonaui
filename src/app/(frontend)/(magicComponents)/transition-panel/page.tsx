@@ -10,7 +10,7 @@ const Page = async () => {
   const { data: testimonials } = await sanityFetch({
     query: TESTIMONIALS_QUERY,
   });
-  const sourceCode = await getFileSourceCode(
+  const sourceCode =  getFileSourceCode(
     "src/app/(frontend)/(magicComponents)/transition-panel/TransitionPanel.tsx",
   );
   return (

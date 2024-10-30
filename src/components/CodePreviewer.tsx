@@ -24,17 +24,19 @@ const CodePreview: React.FC<CodePreviewProps> = ({
   };
 
   return (
-    <div className={`relative rounded-md p-4  ${className}`}>
-        <div className="mx-auto max-w-[1080px] rounded-lg  py-4">
-            <h3 className=" text-4xl">Source Code</h3>
-        </div>
-      <div className="relative mx-auto max-w-[1080px] rounded-lg border">
-        <SyntaxHighlighter language={language} style={atomDark}>
+    <div className={`relative rounded-md p-4 ${className}`}>
+      <div className="relative mx-auto max-h-[720px] max-w-[1080px] overflow-scroll rounded-lg">
+        <SyntaxHighlighter
+          language={language}
+          style={atomDark}
+          wrapLongLines={true}
+          showLineNumbers={true}
+        >
           {code.trim()}
         </SyntaxHighlighter>
         <button
           onClick={handleCopy}
-          className="absolute right-2 top-2 flex items-center space-x-1 rounded bg-slate-500 py-1 px-2 text-white transition hover:bg-slate-600"
+          className="absolute right-2 top-4 flex items-center space-x-1 rounded bg-slate-500 px-2 py-1 text-white transition hover:bg-slate-600"
         >
           {copied ? <Check /> : <Copy />}
           <span>{copied ? "Copied" : "Copy"}</span>

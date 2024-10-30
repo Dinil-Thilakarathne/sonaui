@@ -16,7 +16,6 @@ const SideBar = async () => {
   const { data: ComponentData } = await sanityFetch({
     query: SONAUI_BASIC_COMPONENTS_QUERY,
   });
-  console.log(ComponentData);
   return (
     <Sidebar
       variant="floating"
@@ -39,7 +38,7 @@ const SideBar = async () => {
                     <span className="text-xl">{comp.name}</span>
                     <Badge
                       variant={comp.tags}
-                      className="h-fit flex-grow-0 px-2 py-0.5 text-xs"
+                      className="h-fit flex-grow-0 text-[0.75rem] leading-[1]"
                     >
                       {comp.tags}
                     </Badge>
