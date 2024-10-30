@@ -25,10 +25,7 @@ const CodePreview: React.FC<CodePreviewProps> = ({
 
   return (
     <div className={`relative rounded-md p-4 ${className}`}>
-      <div className="mx-auto max-w-[1080px] rounded-lg py-4">
-        <h3 className="text-4xl">Source Code</h3>
-      </div>
-      <div className="relative mx-auto max-h-[480px] max-w-[1080px] overflow-scroll rounded-lg">
+      <div className="relative mx-auto max-h-[720px] max-w-[1080px] overflow-scroll rounded-lg">
         <SyntaxHighlighter
           language={language}
           style={atomDark}
