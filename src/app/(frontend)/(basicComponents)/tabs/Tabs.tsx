@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 import React from "react";
 
@@ -24,7 +25,7 @@ export const Tabs: React.FC<TabsProps> = ({
   <TabsPrimitive.Root
     defaultValue={defaultValue}
     onValueChange={onValueChange}
-    className={`w-full rounded-md ${className}`}
+    className={cn("w-full rounded-md", className)}
   >
     <TabsPrimitive.List className="flex gap-x-2 py-2" aria-label="Tabs">
       {tabs.map((tab) => (

@@ -2,6 +2,7 @@ import ComponentPreviewer from "@/components/ComponentPreviewer";
 import { Tabs } from "./Tabs";
 import { getFileSourceCode } from "@/hooks/useFileSourceCode";
 import CodePreview from "@/components/CodePreviewer";
+import { SplitPreviewer } from "@/components/SplitPreviewer";
 
 const Page = () => {
   const tabItems = [
@@ -61,13 +62,34 @@ const Page = () => {
   const sourceCode = getFileSourceCode(
     "src/app/(frontend)/(basicComponents)/tabs/Tabs.tsx",
   );
+  const componentSourceCode = getFileSourceCode(
+    "src/app/(frontend)/(basicComponents)/tabs/Demo.txt",
+  );
+
+  const splitPreviewerData = [
+    {
+      id: "tab-1",
+      label: "Preview",
+      content: (
+        <ComponentPreviewer>
+          <Tabs tabs={tabItems} defaultValue="tab1" className="w-[320px]" />
+        </ComponentPreviewer>
+      ),
+    },
+    {
+      id: "tab-2",
+      label: "Code",
+      content: <CodePreview code={componentSourceCode} />,
+    },
+  ];
 
   return (
     <>
-      <ComponentPreviewer>
-        <Tabs tabs={tabItems} defaultValue="tab1" className="w-[320px]" />
-      </ComponentPreviewer>
-      <CodePreview code={sourceCode} />
+      <SplitPreviewer tabs={splitPreviewerData} defaultValue="tab-1" />
+      <h3 className="mt-8 text-2xl">Source Code</h3>
+      <div className="mt-4 rounded-lg border">
+        <CodePreview code={sourceCode} />,
+      </div>
     </>
   );
 };
