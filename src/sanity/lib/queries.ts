@@ -31,3 +31,15 @@ export const SONAUI_BASIC_COMPONENTS_QUERY =
     category,
     tags
   }`);
+
+
+export const SITE_METADATA_QUERY = defineQuery(`*[_type == "siteMetaData"][0]{
+  siteTitle,
+  siteDescription,
+  "logoUrl": logo.asset->url,
+  "faviconUrl": favicon.asset->url,
+  socialLinks[]{
+    platform,
+    url
+  },
+}`);
