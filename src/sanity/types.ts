@@ -74,6 +74,44 @@ export type Slug = {
   source?: string;
 };
 
+export type SiteMetaData = {
+  _id: string;
+  _type: "siteMetaData";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  siteTitle?: string;
+  siteDescription?: string;
+  logo?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  favicon?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  socialLinks?: Array<{
+    platform?: string;
+    url?: string;
+    _key: string;
+  }>;
+  footerText?: string;
+};
+
 export type SonauiComponent = {
   _id: string;
   _type: "sonauiComponent";
@@ -172,6 +210,7 @@ export type AllSanitySchemaTypes =
   | SanityFileAsset
   | Geopoint
   | Slug
+  | SiteMetaData
   | SonauiComponent
   | Testimonial
   | SanityImageCrop
@@ -214,6 +253,18 @@ export type SONAUI_BASIC_COMPONENTS_QUERYResult = Array<{
   category: "basicComponent" | "magicComponent" | "textEffect" | null;
   tags: "new" | "soon" | "updated" | null;
 }>;
+// Variable: SITE_METADATA_QUERY
+// Query: *[_type == "siteMetaData"][0]{  siteTitle,  siteDescription,  "logoUrl": logo.asset->url,  "faviconUrl": favicon.asset->url,  socialLinks[]{    platform,    url  },}
+export type SITE_METADATA_QUERYResult = {
+  siteTitle: string | null;
+  siteDescription: string | null;
+  logoUrl: string | null;
+  faviconUrl: string | null;
+  socialLinks: Array<{
+    platform: string | null;
+    url: string | null;
+  }> | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -222,5 +273,6 @@ declare module "@sanity/client" {
     '*[_type == "testimonial"]{\n  _id,\n  user,\n  userImage {\n    asset->{\n      _id,\n      url\n    }\n  },\n  description\n}': TESTIMONIALS_QUERYResult;
     '*[_type == "sonauiComponent"] | order(name asc){\n    _id,\n    name,\n    pageLink,\n    status,\n    category,\n    tags\n  }': SONAUI_COMPONENTS_QUERYResult;
     '*[_type == "sonauiComponent"  && category == "basicComponent"] | order(name asc){\n    _id,\n    name,\n    pageLink,\n    status,\n    category,\n    tags\n  }': SONAUI_BASIC_COMPONENTS_QUERYResult;
+    '*[_type == "siteMetaData"][0]{\n  siteTitle,\n  siteDescription,\n  "logoUrl": logo.asset->url,\n  "faviconUrl": favicon.asset->url,\n  socialLinks[]{\n    platform,\n    url\n  },\n}': SITE_METADATA_QUERYResult;
   }
 }
