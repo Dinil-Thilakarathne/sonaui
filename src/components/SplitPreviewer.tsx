@@ -26,12 +26,12 @@ export const SplitPreviewer: React.FC<SplitPreviewerProps> = ({
     onValueChange={onValueChange}
     className={`w-full rounded-md ${className}`}
   >
-    <TabsPrimitive.List className="flex gap-x-2 py-2" aria-label="Tabs">
+    <TabsPrimitive.List className="flex gap-x-4 py-2" aria-label="Tabs">
       {tabs.map((tab) => (
         <TabsPrimitive.Trigger
           key={tab.id}
           value={tab.id}
-          className=" text-xl px-4 py-2 font-medium text-slate-600 hover:text-slate-900 focus:outline-none data-[state=active]:border-b-2 data-[state=active]:border-blue-500 dark:text-slate-400 hover:dark:text-slate-200 data-[state=active]:dark:text-slate-200 data-[state=active]:text-slate-900"
+          className=" text-lg md:px-4 py-2  text-slate-600 hover:text-slate-900 focus:outline-none data-[state=active]:border-b-2 data-[state=active]:border-blue-500 dark:text-slate-400 hover:dark:text-slate-200 data-[state=active]:dark:text-slate-200 data-[state=active]:text-slate-900"
         >
           {tab.label}
         </TabsPrimitive.Trigger>
@@ -42,7 +42,7 @@ export const SplitPreviewer: React.FC<SplitPreviewerProps> = ({
       <TabsPrimitive.Content
         key={tab.id}
         value={tab.id}
-        className="rounded-md border p-4"
+        className="rounded-md border md:p-4"
       >
         {tab.content}
       </TabsPrimitive.Content>
