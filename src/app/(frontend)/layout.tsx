@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         disableTransitionOnChange
       >
         <Header />
-        <div className="container relative mx-auto overflow-hidden">
+        <div className="relative mx-auto overflow-hidden">
           <SidebarProvider className="">
             <SideBar />
             <div className="w-full p-[0.25rem]">

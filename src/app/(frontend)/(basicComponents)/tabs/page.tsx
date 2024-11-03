@@ -84,7 +84,6 @@ const Page = () => {
       <ComponentPreviewer>
         <Tabs tabs={tabItems} defaultValue="tab1" className="w-[320px]" />
       </ComponentPreviewer>
-      <h3 className="mt-8 text-2xl font-medium">Source Code</h3>
       <SplitPreviewer tabs={splitPreviewerData} defaultValue="tab-1" />
     </>
   );

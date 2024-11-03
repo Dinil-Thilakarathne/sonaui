@@ -32,7 +32,7 @@ export const Tabs: React.FC<TabsProps> = ({
         <TabsPrimitive.Trigger
           key={tab.id}
           value={tab.id}
-          className="flex-grow rounded-md border px-4 py-2 font-medium text-slate-600 hover:text-slate-900 focus:outline-none data-[state=active]:border-b-2 data-[state=active]:border-blue-500 dark:text-slate-400 hover:dark:text-slate-200 data-[state=active]:dark:text-slate-200 data-[state=active]:text-slate-900"
+          className="flex-grow rounded-md border px-4 py-2 font-medium text-slate-600 hover:text-slate-900 focus:outline-none data-[state=active]:border-b-2 data-[state=active]:border-blue-500 data-[state=active]:text-slate-900 dark:text-slate-400 hover:dark:text-slate-200 data-[state=active]:dark:text-slate-200"
         >
           {tab.label}
         </TabsPrimitive.Trigger>

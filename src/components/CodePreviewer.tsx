@@ -25,13 +25,15 @@ const CodePreview: React.FC<CodePreviewProps> = ({
   };
 
   return (
-    <div className={cn("relative rounded-md p-0.5 md:p-4 border", className)}>
-      <div className="relative mx-auto max-h-[720px] max-w-[1080px] overflow-scroll rounded-lg">
+    <div className={cn("relative rounded-md p-0.5 md:p-4 border w-full overflow-scroll", className)}>
+      <div className="relative mx-auto max-h-[720px] lg:max-w-[720px] xl:max-w-[100%] overflow-scroll rounded-lg">
         <SyntaxHighlighter
           language={language}
           style={atomDark}
+          wrapLines={true}
           wrapLongLines={true}
           showLineNumbers={true}
+          useInlineStyles={true}
         >
           {code.trim()}
         </SyntaxHighlighter>
