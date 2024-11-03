@@ -69,27 +69,23 @@ const Page = () => {
   const splitPreviewerData = [
     {
       id: "tab-1",
-      label: "Preview",
-      content: (
-        <ComponentPreviewer>
-          <Tabs tabs={tabItems} defaultValue="tab1" className="w-[320px]" />
-        </ComponentPreviewer>
-      ),
+      label: "Page.tsx",
+      content: <CodePreview code={componentSourceCode} />,
     },
     {
       id: "tab-2",
-      label: "Code",
-      content: <CodePreview code={componentSourceCode} />,
+      label: "Tabs.tsx",
+      content: <CodePreview code={sourceCode} />,
     },
   ];
 
   return (
     <>
+      <ComponentPreviewer>
+        <Tabs tabs={tabItems} defaultValue="tab1" className="w-[320px]" />
+      </ComponentPreviewer>
+      <h3 className="mt-8 text-2xl font-medium">Source Code</h3>
       <SplitPreviewer tabs={splitPreviewerData} defaultValue="tab-1" />
-      <h3 className="mt-8 text-2xl">Source Code</h3>
-      <div className="mt-4 rounded-lg border">
-        <CodePreview code={sourceCode} />,
-      </div>
     </>
   );
 };
