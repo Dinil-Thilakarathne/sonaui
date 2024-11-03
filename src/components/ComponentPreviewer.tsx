@@ -11,9 +11,10 @@ const ComponentPreviewer = ({
   className,
 }: ComponentPreviewerProps) => {
   return (
-    <div className={cn("h-auto w-full px-4", className)}>
-      <div className="flex w-full justify-center pt-4">
-        <div className="flex max-h-[50vh] min-h-[480px] w-full max-w-[1080px] items-center justify-center rounded-lg  p-4">
+    <div className={cn("h-auto w-full px-0.5 md:px-4", className)}>
+      <h1 className=" text-2xl font-medium">Preview</h1>
+      <div className="flex w-full justify-center border rounded-md mt-2">
+        <div className="flex max-h-[50vh] min-h-[480px] w-full max-w-[1080px] items-center justify-center rounded-lg">
           {children}
         </div>
       </div>

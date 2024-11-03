@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Check, Copy } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface CodePreviewProps {
   code: string;
@@ -24,7 +25,7 @@ const CodePreview: React.FC<CodePreviewProps> = ({
   };
 
   return (
-    <div className={`relative rounded-md p-4 ${className}`}>
+    <div className={cn("relative rounded-md p-0.5 md:p-4 border", className)}>
       <div className="relative mx-auto max-h-[720px] max-w-[1080px] overflow-scroll rounded-lg">
         <SyntaxHighlighter
           language={language}
@@ -36,7 +37,7 @@ const CodePreview: React.FC<CodePreviewProps> = ({
         </SyntaxHighlighter>
         <button
           onClick={handleCopy}
-          className="absolute right-2 top-4 flex items-center space-x-1 rounded bg-slate-500 px-2 py-1 text-white transition hover:bg-slate-600"
+          className="absolute right-2 top-4 flex items-center space-x-1 rounded bg-slate-500 py-1 text-white transition hover:bg-slate-600 md:px-2"
         >
           {copied ? <Check /> : <Copy />}
           <span>{copied ? "Copied" : "Copy"}</span>
