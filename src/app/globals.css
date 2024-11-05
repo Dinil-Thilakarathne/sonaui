@@ -33,4 +33,58 @@
   .sidebar-h {
     height: calc(100svh - var(--header-height));
   }
+
+  .animated-dock {
+    --scale-lg: 1.5;
+    --scale-md: 1.35;
+    --scale-normal: 1.25;
+    --scale-sm: 1.05;
+    .animated-dock__item:hover img {
+      height: calc(var(--animated-dock-height) * var(--scale-lg));
+      width: calc(var(--animated-dock-height) * var(--scale-lg));
+    }
+    .animated-dock__item:hover + .animated-dock__item img {
+      height: calc(var(--animated-dock-height) * var(--scale-md));
+      width: calc(var(--animated-dock-height) * var(--scale-md));
+    }
+    .animated-dock__item:hover
+      + .animated-dock__item
+      img
+      + .animated-dock__item
+      img {
+      height: calc(var(--animated-dock-height) * var(--scale-normal));
+      width: calc(var(--animated-dock-height) * var(--scale-normal));
+    }
+    .animated-dock__item:hover
+      + .animated-dock__item
+      img
+      + .animated-dock__item
+      img
+      + .animated-dock__item
+      img {
+      height: calc(var(--animated-dock-height) * var(--scale-sm));
+      width: calc(var(--animated-dock-height) * var(--scale-sm));
+    }
+
+    .animated-dock__item:has(+ .animated-dock__item:hover) img {
+      height: calc(var(--animated-dock-height) * var(--scale-md));
+      width: calc(var(--animated-dock-height) * var(--scale-md));
+    }
+    .animated-dock__item:has(
+        + .animated-dock__item + .animated-dock__item:hover
+      )
+      img {
+      height: calc(var(--animated-dock-height) * var(--scale-normal));
+      width: calc(var(--animated-dock-height) * var(--scale-normal));
+    }
+    .animated-dock__item:has(
+        + .animated-dock__item
+          + .animated-dock__item
+          + .animated-dock__item:hover
+      )
+      img {
+      height: calc(var(--animated-dock-height) * var(--scale-sm));
+      width: calc(var(--animated-dock-height) * var(--scale-sm));
+    }
+  }
 }
