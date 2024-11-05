@@ -1,0 +1,61 @@
+"use client";
+import React from "react";
+import AnimatedDock from "./AnimatedDock";
+import ComponentPreviewer from "@/components/ComponentPreviewer";
+
+const animatedDockData = [
+  {
+    tag: "Notion",
+    icon: "/animated-dock/notion-icon.png",
+  },
+  {
+    tag: "After Effects",
+    icon: "/animated-dock/ae-icon.png",
+  },
+  {
+    tag: "Figma",
+    icon: "/animated-dock/figma-icon.png",
+  },
+  {
+    tag: "Slack",
+    icon: "/animated-dock/slack-icon.png",
+  },
+  {
+    tag: "Spotify",
+    icon: "/animated-dock/spotify-icon.png",
+  },
+  {
+    tag: "VS Code",
+    icon: "/animated-dock/vscode-icon.png",
+  },
+  {
+    tag: "Photoshop",
+    icon: "/animated-dock/ps-icon.png",
+  },
+  {
+    tag: "Obsidian",
+    icon: "/animated-dock/obsidian-icon.png",
+  },
+  {
+    tag: "Discord",
+    icon: "/animated-dock/discord-icon.png",
+  },
+  {
+    tag: "Davinci Resolve",
+    icon: "/animated-dock/dr-icon.png",
+  },
+];
+
+const Page = () => {
+  return (
+    <>
+        <AnimatedDock>
+          {animatedDockData.map((item, index) => (
+            <AnimatedDock.Item key={index} icon={item.icon} tag={item.tag} />
+          ))}
+        </AnimatedDock>
+    </>
+  );
+};
+
+export default Page;
