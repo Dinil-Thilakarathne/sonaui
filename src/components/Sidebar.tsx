@@ -7,13 +7,11 @@ import {
   SidebarGroupLabel,
   SidebarSeparator,
 } from "./ui/sidebar";
-import { Badge } from "./ui/badge";
 import { sanityFetch } from "@/sanity/lib/live";
 import {
   SONAUI_BASIC_COMPONENTS_QUERY,
   SONAUI_MAGIC_COMPONENTS_QUERY,
 } from "@/sanity/lib/queries";
-import Link from "next/link";
 import ComponentLink from "./ComponentLink";
 
 const SideBar = async () => {
