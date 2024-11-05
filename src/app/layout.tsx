@@ -3,6 +3,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { SITE_METADATA_QUERY } from "@/sanity/lib/queries";
+import { VercelToolbar } from "@vercel/toolbar/next";
 
 export const metadata: Metadata = {
   title: "SonaUI | Modern React Components Powered by Tailwind & Radix",
@@ -19,6 +20,8 @@ export default async function RootLayout({
     query: SITE_METADATA_QUERY,
   });
 
+  const shouldInjectToolbar = process.env.NODE_ENV === "development";
+
   return (
     <html lang="en">
       <head>
@@ -34,6 +37,7 @@ export default async function RootLayout({
         {children}
         <SanityLive />
         <Analytics />
+        {shouldInjectToolbar && <VercelToolbar />}
       </body>
     </html>
   );
