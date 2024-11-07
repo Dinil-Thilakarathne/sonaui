@@ -1,7 +1,5 @@
-"use client";
 import React from "react";
-import AnimatedDock from "./AnimatedDock";
-import ComponentPreviewer from "@/components/ComponentPreviewer";
+import { AnimatedDock, AnimatedDockItem } from "./AnimatedDock";
 
 const animatedDockData = [
   {
@@ -47,11 +45,12 @@ const animatedDockData = [
 ];
 
 const Page = () => {
+
   return (
     <>
         <AnimatedDock>
           {animatedDockData.map((item, index) => (
-            <AnimatedDock.Item key={index} icon={item.icon} tag={item.tag} />
+            <AnimatedDockItem key={index} icon={item.icon} tag={item.tag} />
           ))}
         </AnimatedDock>
     </>

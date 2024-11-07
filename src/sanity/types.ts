@@ -253,6 +253,16 @@ export type SONAUI_BASIC_COMPONENTS_QUERYResult = Array<{
   category: "basicComponent" | "magicComponent" | "textEffect" | null;
   tags: "new" | "soon" | "updated" | null;
 }>;
+// Variable: SONAUI_MAGIC_COMPONENTS_QUERY
+// Query: *[_type == "sonauiComponent"  && category == "magicComponent"] | order(name asc){    _id,    name,    pageLink,    status,    category,    tags  }
+export type SONAUI_MAGIC_COMPONENTS_QUERYResult = Array<{
+  _id: string;
+  name: string | null;
+  pageLink: string | null;
+  status: "completed" | "deprecated" | "inDevelopment" | null;
+  category: "basicComponent" | "magicComponent" | "textEffect" | null;
+  tags: "new" | "soon" | "updated" | null;
+}>;
 // Variable: SITE_METADATA_QUERY
 // Query: *[_type == "siteMetaData"][0]{  siteTitle,  siteDescription,  "logoUrl": logo.asset->url,  "faviconUrl": favicon.asset->url,  socialLinks[]{    platform,    url  },}
 export type SITE_METADATA_QUERYResult = {
@@ -273,6 +283,7 @@ declare module "@sanity/client" {
     '*[_type == "testimonial"]{\n  _id,\n  user,\n  userImage {\n    asset->{\n      _id,\n      url\n    }\n  },\n  description\n}': TESTIMONIALS_QUERYResult;
     '*[_type == "sonauiComponent"] | order(name asc){\n    _id,\n    name,\n    pageLink,\n    status,\n    category,\n    tags\n  }': SONAUI_COMPONENTS_QUERYResult;
     '*[_type == "sonauiComponent"  && category == "basicComponent"] | order(name asc){\n    _id,\n    name,\n    pageLink,\n    status,\n    category,\n    tags\n  }': SONAUI_BASIC_COMPONENTS_QUERYResult;
+    '*[_type == "sonauiComponent"  && category == "magicComponent"] | order(name asc){\n    _id,\n    name,\n    pageLink,\n    status,\n    category,\n    tags\n  }': SONAUI_MAGIC_COMPONENTS_QUERYResult;
     '*[_type == "siteMetaData"][0]{\n  siteTitle,\n  siteDescription,\n  "logoUrl": logo.asset->url,\n  "faviconUrl": favicon.asset->url,\n  socialLinks[]{\n    platform,\n    url\n  },\n}': SITE_METADATA_QUERYResult;
   }
 }
