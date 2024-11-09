@@ -85,7 +85,7 @@ const AccordionItem = ({ children, className, style }: AccordionItemProps) => {
 };
 
 const AccordionItemHeader = ({ children }: AccordionItemHeaderProps) => {
-  return <div className="flex border-lime-400">{children}</div>;
+  return <div className="flex ">{children}</div>;
 };
 
 const AccordionItemTrigger = ({
