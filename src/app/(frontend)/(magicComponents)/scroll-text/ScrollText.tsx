@@ -1,24 +1,32 @@
 "use client";
+
 import { useClock } from "@/hooks/useClock";
+import { cn } from "@/lib/utils";
 import {
   motion,
-  useAnimationFrame,
-  useMotionValue,
+  useInView,
+  useMotionTemplate,
   useScroll,
   useSpring,
   useTransform,
   useVelocity,
 } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
-interface scrollTextProps {
+type LoopSpeedVariant = "slow" | "medium" | "fast";
+
+interface scrollTextProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  scrollDirection?: "horizontal" | "vertical";
-  baseVelocity?: number;
+  className?: string;
+  loopSpeed?: LoopSpeedVariant;
 }
 
-const ScrollText = ({ children, baseVelocity = 8 }: scrollTextProps) => {
-  const baseX = useMotionValue(0);
+const ScrollText = ({
+  children,
+  className,
+  loopSpeed = "fast",
+  ...props
+}: scrollTextProps) => {
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, {
@@ -28,65 +36,81 @@ const ScrollText = ({ children, baseVelocity = 8 }: scrollTextProps) => {
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
     clamp: false,
   });
+  const [direction, setDirection] = useState<boolean>(false);
 
-  // Ref to the text container and state for the calculated width
-  const textRef = useRef<HTMLSpanElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [numberOfRepeats, setNumberOfRepeats] = useState(1);
+  const durationMapping: Record<LoopSpeedVariant, number> = {
+    slow: 34000,
+    medium: 22000,
+    fast: 6000,
+  };
 
-  // Dynamically calculate the width of the text container on mount
-  useEffect(() => {
-    if (textRef.current && containerRef.current) {
-      const textElementWidth = textRef.current.offsetWidth;
+  const ref = useRef<HTMLDivElement>(null);
 
-      const containerWidth = containerRef.current.clientWidth;
-      const repeats = Math.ceil(containerWidth / textElementWidth) + 1;
-      setNumberOfRepeats(repeats);
-    }
-  }, []);
+  // `useInView` hook to detect if the ref element is in the viewport
+  const isInView = useInView(ref);
 
-  const wrapPercentage = 100 / numberOfRepeats;
-  const x = useTransform(
-    baseX,
-    (v) => `${((v % wrapPercentage) + wrapPercentage) % wrapPercentage}%`,
+  // Use `useClock` to manage time-based motion
+  const clock = useClock({
+    defaultValue: Date.now(),
+    reverse: direction,
+  }).value;
+
+  const actualDuration = durationMapping[loopSpeed];
+
+  const progress = useTransform(
+    clock,
+    (time) => (time % actualDuration) / actualDuration,
   );
 
-  const directionFactor = useRef<number>(1);
-  useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+  const percentage = useTransform(progress, (t) => t * 100);
+  const translateX = useMotionTemplate`-${percentage}%`;
 
-    /**
-     * This is what changes the direction of the scroll once we
-     * switch scrolling directions.
-     */
-    if (velocityFactor.get() < 0) {
-      directionFactor.current = -1;
-    } else if (velocityFactor.get() > 0) {
-      directionFactor.current = 1;
-    }
+  useEffect(() => {
+    return velocityFactor.onChange((value) => {
+      if (value < 0) {
+        setDirection(true);
+      } else if (value > 0) {
+        setDirection(false);
+      }
+    });
+  }, [velocityFactor]);
 
-    moveBy += directionFactor.current * moveBy * velocityFactor.get();
+  useEffect(() => {
+    console.log(isInView);
+  }, [isInView]);
 
-    baseX.set(baseX.get() + moveBy);
-  });
+  const variants = {
+    hidden: { opacity: 0, y: 100 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   return (
-    <div
-      className="overflow-hiden flex w-[500px] flex-nowrap whitespace-nowrap border-2 border-red-500"
-      ref={containerRef}
+    <motion.div
+      className={cn(
+        "flex w-fit flex-nowrap overflow-hidden whitespace-nowrap border",
+        className,
+      )}
+      {...props}
+      ref={ref}
     >
-      {Array.from({ length: numberOfRepeats }, (_, i) => (
-        <motion.div
-          className="flex w-full flex-nowrap justify-between whitespace-nowrap border text-4xl uppercase"
-          style={{ x }}
-          key={i}
+      <motion.div
+        className="relative flex w-fit flex-nowrap whitespace-nowrap text-4xl uppercase"
+        variants={variants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        transition={{ duration: 0.5, ease: "easeIn" }}
+      >
+        <motion.span className="relative block px-8" style={{ translateX }}>
+          {children}
+        </motion.span>
+        <motion.span
+          className="absolute left-full block px-8"
+          style={{ translateX }}
         >
-          <motion.span className="block border px-8" ref={textRef}>
-            {children}
-          </motion.span>
-        </motion.div>
-      ))}
-    </div>
+          {children}
+        </motion.span>
+      </motion.div>
+    </motion.div>
   );
 };
 

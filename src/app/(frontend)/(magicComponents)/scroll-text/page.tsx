@@ -1,7 +1,8 @@
+"use client";
 import React from "react";
 import ScrollText from "./ScrollText";
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <div className="h-[150vh]"></div>
@@ -11,4 +12,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
