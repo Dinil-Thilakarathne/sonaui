@@ -85,7 +85,7 @@ const ScrollText = ({
   };
 
   return (
-    <motion.div
+    <div
       className={cn(
         "flex w-fit flex-nowrap overflow-hidden whitespace-nowrap border",
         className,
@@ -110,7 +110,7 @@ const ScrollText = ({
           {children}
         </motion.span>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 
