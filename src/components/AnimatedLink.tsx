@@ -6,9 +6,10 @@ import { ArrowUpRight } from "lucide-react";
 interface AnimatedLinkProps {
   text: string;
   link: string;
+  cloneTextColor?: string;
 }
 
-const AnimatedLink = ({ text, link }: AnimatedLinkProps) => {
+const AnimatedLink = ({ text, link, cloneTextColor }: AnimatedLinkProps) => {
   return (
     <div>
       <Link href={link} className="relative flex">
@@ -16,6 +17,7 @@ const AnimatedLink = ({ text, link }: AnimatedLinkProps) => {
           text={text}
           className="text-xl uppercase"
           type="characters"
+          cloneTextColor={cloneTextColor}
         />
         <span className="relative -top-[10px] h-fit flex-grow-0 scale-75 text-xs">
           <ArrowUpRight />
