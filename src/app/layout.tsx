@@ -6,9 +6,33 @@ import { SITE_METADATA_QUERY } from "@/sanity/lib/queries";
 import { VercelToolbar } from "@vercel/toolbar/next";
 
 export const metadata: Metadata = {
-  title: "SonaUI | Modern React Components Powered by Tailwind & Radix",
+  title: {
+    template: "%s",
+    default: "SonaUI | Modern UI Library with Essential & Animated Components",
+  },
   description:
-    "Explore SonaUI, an open-source React-based UI library built with Tailwind CSS and powered by Radix UI for accessible and customizable components. Streamline your web development with pre-designed, responsive components that ensure consistent, modern designs with minimal effort.",
+    "SonaUI is an open-source React UI library featuring a blend of essential and animated components, built with Tailwind CSS and Framer Motion. Effortlessly create modern, responsive UIs with both basic and 'magic' components—designed to bring animations and interactivity to your web projects. Perfect for developers seeking a flexible, visually appealing solution for web application design.",
+  metadataBase: new URL("https://sonaui.vercel.app/"),
+
+  twitter: {
+    card: "summary_large_image",
+    site: "https://sonaui.vercel.app/",
+    title: "SonaUI | Modern UI Library with Essential & Animated Components",
+    description:
+      "SonaUI is an open-source React UI library featuring a blend of essential and animated components, built with Tailwind CSS and Framer Motion. Effortlessly create modern, responsive UIs with both basic and 'magic' components—designed to bring animations and interactivity to your web projects. Perfect for developers seeking a flexible, visually appealing solution for web application design.",
+    images: ["/social-media-image.png"],
+    creator: "@codybydinil",
+  },
+
+  openGraph: {
+    type: "website",
+    url: "https://sonaui.vercel.app/",
+    title: "SonaUI | Modern UI Library with Essential & Animated Components",
+    description:
+      "SonaUI is an open-source React UI library featuring a blend of essential and animated components, built with Tailwind CSS and Framer Motion. Effortlessly create modern, responsive UIs with both basic and 'magic' components—designed to bring animations and interactivity to your web projects. Perfect for developers seeking a flexible, visually appealing solution for web application design.",
+    images: ["/social-media-image.png"],
+    locale: "en_US",
+  },
 };
 
 export default async function RootLayout({

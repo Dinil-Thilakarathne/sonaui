@@ -3,6 +3,12 @@ import { Tabs } from "./Tabs";
 import { getFileSourceCode } from "@/hooks/useFileSourceCode";
 import CodePreview from "@/components/CodePreviewer";
 import { SplitPreviewer } from "@/components/SplitPreviewer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "React Tabs",
+  description: "A customizable tabs component",
+};
 
 const Page = () => {
   const tabItems = [

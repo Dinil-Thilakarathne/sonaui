@@ -5,6 +5,12 @@ import {
   AccordionItemTrigger,
   AccordionItemContent,
 } from "./Accordion";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Accordion",
+  description: "A customizable accordion component",
+};
 
 const accordionData = [
   {

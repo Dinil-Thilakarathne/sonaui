@@ -4,6 +4,12 @@ import ComponentPreviewer from "@/components/ComponentPreviewer";
 import { getFileSourceCode } from "@/hooks/useFileSourceCode";
 import { SplitPreviewer } from "@/components/SplitPreviewer";
 import CodePreview from "@/components/CodePreviewer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Animated Dock",
+  description: "A customizable Animated Dock component",
+};
 
 const animatedDockData = [
   {

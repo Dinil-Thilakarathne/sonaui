@@ -16,6 +16,7 @@ interface AnimatedTextProps {
   className?: string;
   preset?: PresetType;
   variants?: CharacterVariants;
+  cloneTextColor?: string;
 }
 
 const defaultCharacterVariants: Variants = {
@@ -61,6 +62,7 @@ const AnimatedText = ({
   className,
   variants,
   preset = "slideUp",
+  cloneTextColor,
 }: AnimatedTextProps) => {
   const splitText = useTextSplit(text, {
     splitBy: type === "characters" ? "characters" : "words",
@@ -78,7 +80,7 @@ const AnimatedText = ({
 
   return (
     <div
-      className={cn("relative overflow-hidden h-fit text-xl ", className)}
+      className={cn("relative h-fit overflow-hidden text-xl", className)}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
@@ -88,9 +90,10 @@ const AnimatedText = ({
           characterVariant={characterVariant}
           isHover={isHover}
           presetClass={presetClass}
+          cloneTextColor={cloneTextColor}
         />
       )}
-      <motion.p className="relative select-none leading-[1] h-full">
+      <motion.p className="relative h-full select-none leading-[1]">
         {splitText.map((char, index) => (
           <motion.span
             key={index}
@@ -109,6 +112,7 @@ const AnimatedText = ({
           splitText={splitText}
           characterVariant={characterVariant}
           isHover={isHover}
+          cloneTextColor={cloneTextColor}
         />
       )}
     </div>
@@ -122,6 +126,7 @@ type CloneTextProps = {
   characterVariant: Variants;
   isHover: boolean;
   presetClass?: string;
+  cloneTextColor?: string;
 };
 
 const CloneText = ({
@@ -129,15 +134,16 @@ const CloneText = ({
   characterVariant,
   isHover,
   presetClass,
+  cloneTextColor,
 }: CloneTextProps) => {
   return (
-    <motion.p className={cn("absolute leading-[1] h-full", presetClass)}>
+    <motion.p className={cn("absolute h-full leading-[1]", presetClass)}>
       {splitText.map((char, index) => (
         <motion.span
           key={index}
           variants={characterVariant}
           animate={isHover === true ? "animate" : "initial"}
-          className={"inline-block text-red-400"}
+          className={cn("inline-block text-yellow-400", cloneTextColor)}
           transition={{ delay: index * 0.025, type: "tween" }}
         >
           {char === " " ? "\u00A0" : char}
