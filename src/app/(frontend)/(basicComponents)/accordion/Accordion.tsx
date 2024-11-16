@@ -68,24 +68,17 @@ const AccordionItem = ({ children, className, style }: AccordionItemProps) => {
   return (
     <div
       role="presentation"
-      className={cn("relative overflow-hidden rounded-xl px-8 py-6", className)}
+      className={cn("relative overflow-hidden px-8 py-4", className)}
       style={style}
     >
-      <div
-        className="absolute left-0 top-0 h-full w-full border border-solid"
-        style={{
-          borderImageSource:
-            "linear-gradient(69.85deg, rgba(255, 255, 255, 0.06) 3.32%, rgba(255, 255, 255, 0.25) 24.58%, rgba(255, 255, 255, 0.045) 47.66%, rgba(255, 255, 255, 0.25) 70.27%, rgba(255, 255, 255, 0.055) 93.8%)",
-          borderImageSlice: "1",
-        }}
-      />
+      <div className="absolute left-0 top-0 h-full w-full rounded-xl border border-solid" />
       <div className="relative">{children}</div>
     </div>
   );
 };
 
 const AccordionItemHeader = ({ children }: AccordionItemHeaderProps) => {
-  return <div className="flex ">{children}</div>;
+  return <div className="flex">{children}</div>;
 };
 
 const AccordionItemTrigger = ({
@@ -130,6 +123,12 @@ const AccordionItemContent = ({
     }
   }, [isOpen]);
 
+  const variants = {
+    open: { opacity: [0, 0.5, 1], y: 0 },
+    exit: { opacity: 0, y: 50 },
+    initial: { opacity: 0, y: 50 },
+  };
+
   return (
     <motion.div
       role="region"
@@ -137,13 +136,19 @@ const AccordionItemContent = ({
       className={`overflow-hidden text-sm transition-[height] duration-300`}
       initial={{ height: 0 }}
       animate={{ height: isOpen ? height : 0 }}
-      transition={{ duration: 0.45, ease: "easeIn" }}
+      transition={{ duration: 0.35, ease: "easeIn" }}
     >
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : 50 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
-        className="pt-5"
+        initial="initial"
+        animate={isOpen ? "open" : "exit"}
+        transition={{
+          duration: 0.45,
+          ease: "easeIn",
+          delay: 0.3,
+          type: "tween",
+        }}
+        variants={variants}
+        className="pt-4 dark:text-slate-300"
         ref={ref}
       >
         {children}
