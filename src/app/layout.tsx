@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { SITE_METADATA_QUERY } from "@/sanity/lib/queries";
 import { VercelToolbar } from "@vercel/toolbar/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: {
@@ -62,6 +63,7 @@ export default async function RootLayout({
         <SanityLive />
         <Analytics />
         {shouldInjectToolbar && <VercelToolbar />}
+        <SpeedInsights />
       </body>
     </html>
   );
