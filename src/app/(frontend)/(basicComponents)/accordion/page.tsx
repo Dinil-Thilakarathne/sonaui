@@ -59,13 +59,13 @@ const Page = () => {
   const splitPreviewerData = [
     {
       id: "tab-1",
-      label: "Accordion.tsx",
-      content: <CodePreview code={componentSourceCode} />,
+      label: "Page.tsx",
+      content: <CodePreview code={pageSourceCode} />,
     },
     {
       id: "tab-2",
-      label: "Page.tsx",
-      content: <CodePreview code={pageSourceCode} />,
+      label: "Accordion.tsx",
+      content: <CodePreview code={componentSourceCode} />,
     },
   ];
 

@@ -30,6 +30,7 @@ const CodePreview: React.FC<CodePreviewProps> = ({
         <SyntaxHighlighter
           language={language}
           style={atomDark}
+          lineProps={{style: {wordBreak: 'break-all', whiteSpace: 'pre-wrap'}}}
           wrapLines={true}
           wrapLongLines={true}
           showLineNumbers={true}
