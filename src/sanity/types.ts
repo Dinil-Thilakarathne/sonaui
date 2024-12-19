@@ -123,6 +123,7 @@ export type SonauiComponent = {
   status?: "inDevelopment" | "completed" | "deprecated";
   category?: "textEffect" | "basicComponent" | "magicComponent";
   tags?: "new" | "updated" | "soon";
+  isFeatureComponent?: boolean;
 };
 
 export type Testimonial = {
@@ -275,6 +276,17 @@ export type SITE_METADATA_QUERYResult = {
     url: string | null;
   }> | null;
 } | null;
+// Variable: FEATURED_COMPS_QUERY
+// Query: *[_type == "sonauiComponent"  && isFeatureComponent == true] | order(name asc){  _id,  name,  pageLink,  status,  category,  tags,    isFeatureComponent}
+export type FEATURED_COMPS_QUERYResult = Array<{
+  _id: string;
+  name: string | null;
+  pageLink: string | null;
+  status: "completed" | "deprecated" | "inDevelopment" | null;
+  category: "basicComponent" | "magicComponent" | "textEffect" | null;
+  tags: "new" | "soon" | "updated" | null;
+  isFeatureComponent: boolean | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -285,5 +297,6 @@ declare module "@sanity/client" {
     '*[_type == "sonauiComponent"  && category == "basicComponent"] | order(name asc){\n    _id,\n    name,\n    pageLink,\n    status,\n    category,\n    tags\n  }': SONAUI_BASIC_COMPONENTS_QUERYResult;
     '*[_type == "sonauiComponent"  && category == "magicComponent"] | order(name asc){\n    _id,\n    name,\n    pageLink,\n    status,\n    category,\n    tags\n  }': SONAUI_MAGIC_COMPONENTS_QUERYResult;
     '*[_type == "siteMetaData"][0]{\n  siteTitle,\n  siteDescription,\n  "logoUrl": logo.asset->url,\n  "faviconUrl": favicon.asset->url,\n  socialLinks[]{\n    platform,\n    url\n  },\n}': SITE_METADATA_QUERYResult;
+    '*[_type == "sonauiComponent"  && isFeatureComponent == true] | order(name asc){\n  _id,\n  name,\n  pageLink,\n  status,\n  category,\n  tags,\n    isFeatureComponent\n}': FEATURED_COMPS_QUERYResult;
   }
 }

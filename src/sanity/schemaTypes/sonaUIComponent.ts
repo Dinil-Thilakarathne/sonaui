@@ -57,5 +57,11 @@ export const sonauiComponent = defineType({
         ],
       },
     }),
+    defineField({
+      name: "isFeatureComponent",
+      type: "boolean",
+      title: "Feature Component",
+      description: "Mark this component as a feature component",
+    }),
   ],
 });

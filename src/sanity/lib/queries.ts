@@ -51,3 +51,14 @@ export const SITE_METADATA_QUERY = defineQuery(`*[_type == "siteMetaData"][0]{
     url
   },
 }`);
+
+export const FEATURED_COMPS_QUERY =
+  defineQuery(`*[_type == "sonauiComponent"  && isFeatureComponent == true] | order(name asc){
+  _id,
+  name,
+  pageLink,
+  status,
+  category,
+  tags,
+    isFeatureComponent
+}`);
