@@ -25,7 +25,7 @@ export default async function Home() {
           {siteData.siteDescription}
         </p>
       </div>
-      <div className="grid lg:grid-cols-4 lg:gap-4 border border-lime-500 flex-grow">
+      <div className="grid lg:grid-cols-4 lg:gap-4 flex-grow">
         {featuredComps?.map((comp, i) => {
           return <ComponentCard key={i} data={comp} />;
         })}
