@@ -1,8 +1,10 @@
 "use client";
-import useTextSplit from "@/hooks/useTextSplit";
-import { cn } from "@/lib/utils";
+
 import { motion, Variants } from "framer-motion";
 import React, { useState } from "react";
+
+import { cn } from "@/lib/utils";
+import useTextSplit from "@/hooks/useTextSplit";
 
 type PresetType = "slideUp" | "slideDown";
 
