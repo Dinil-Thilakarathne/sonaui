@@ -13,7 +13,7 @@ const AnimatedPlusMinusButton = ({
   isOpen = false,
 }: AnimatedPlusMinusButtonProps) => {
   return (
-    <button className="flex items-center justify-center">
+    <div role="button" className="flex items-center justify-center">
       <motion.svg
         width={size}
         height={size}
@@ -51,7 +51,7 @@ const AnimatedPlusMinusButton = ({
           transition={{ duration: 0.3 }}
         />
       </motion.svg>
-    </button>
+    </div>
   );
 };
 
