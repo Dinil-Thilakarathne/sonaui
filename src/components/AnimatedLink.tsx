@@ -1,7 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import AnimatedText from "./AnimatedText";
 import { ArrowUpRight } from "lucide-react";
+
+import AnimatedText from "./AnimatedText";
 
 interface AnimatedLinkProps {
   text: string;

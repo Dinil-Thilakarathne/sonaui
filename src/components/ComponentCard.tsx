@@ -2,6 +2,7 @@ import React from "react";
 import { Badge } from "./ui/badge";
 import type { FEATURED_COMPS_QUERYResult } from "@/sanity/types";
 import Link from "next/link";
+import { MoveRight } from "lucide-react";
 
 // TODO: extends types with html div props
 type ComponentCardProps = {
@@ -22,7 +23,10 @@ const ComponentCard = ({ data }: ComponentCardProps) => {
       <div className=" "></div>
       <div>
         <Link href={data.pageLink != null ? data.pageLink : ""}>
-          <button>View</button>
+          <button className="flex items-center gap-x-2 text-sm text-slate-400">
+            <span>View</span>
+            <MoveRight />
+          </button>
         </Link>
       </div>
     </div>

@@ -1,8 +1,10 @@
 "use client";
+
 import React, { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Check, Copy } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 
 interface CodePreviewProps {

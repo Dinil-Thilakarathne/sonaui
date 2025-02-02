@@ -1,8 +1,9 @@
 import React from "react";
+import Link from "next/link";
+
 import { ModeToggle } from "./ThemeToggle";
 import { Badge } from "./ui/badge";
 import AnimatedLink from "./AnimatedLink";
-import Link from "next/link";
 
 const Header = () => {
   return (
