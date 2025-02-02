@@ -20,7 +20,7 @@ const Header = () => {
         </div>
       </Link>
       <div>
-        <div className="flex items-center">
+        <div className="flex items-center gap-4">
           <AnimatedLink
             text="Github"
             link="https://github.com/Dinil-Thilakarathne/sonaui/"
