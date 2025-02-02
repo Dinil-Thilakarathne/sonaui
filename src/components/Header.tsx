@@ -1,8 +1,8 @@
 import React from "react";
+import Link from "next/link";
+
 import { ModeToggle } from "./ThemeToggle";
 import { Badge } from "./ui/badge";
-import AnimatedLink from "./AnimatedLink";
-import Link from "next/link";
 
 const Header = () => {
   return (
@@ -19,11 +19,7 @@ const Header = () => {
         </div>
       </Link>
       <div>
-        <div className="flex items-center gap-4">
-          <AnimatedLink
-            text="Github"
-            link="https://github.com/Dinil-Thilakarathne/sonaui/"
-          />
+        <div className="flex items-center">
           <ModeToggle />
         </div>
       </div>
