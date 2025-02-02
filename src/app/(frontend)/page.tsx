@@ -12,8 +12,6 @@ export default async function Home() {
     query: FEATURED_COMPS_QUERY,
   });
 
-  console.log(featuredComps);
-
   if (!siteData) return;
   return (
     <div className="flex h-[calc(100%_-10rem)] flex-col justify-between gap-y-4 p-4">
@@ -25,11 +23,12 @@ export default async function Home() {
           {siteData.siteDescription}
         </p>
       </div>
-      <div className="grid lg:grid-cols-4 lg:gap-4 flex-grow">
+      <div className="grid grid-cols-1 gap-2 last:mb-auto md:grid-cols-2 lg:grid-cols-4 lg:gap-4">
         {featuredComps?.map((comp, i) => {
           return <ComponentCard key={i} data={comp} />;
         })}
       </div>
+      <div className="flex-grow" />
       <div className="flex gap-x-2">
         {siteData.socialLinks?.map((link, i) => {
           return (
