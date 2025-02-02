@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { ModeToggle } from "./ThemeToggle";
 import { Badge } from "./ui/badge";
+import AnimatedLink from "./AnimatedLink";
 
 const Header = () => {
   return (
@@ -20,6 +21,10 @@ const Header = () => {
       </Link>
       <div>
         <div className="flex items-center">
+          <AnimatedLink
+            text="Github"
+            link="https://github.com/Dinil-Thilakarathne/sonaui/"
+          />
           <ModeToggle />
         </div>
       </div>
